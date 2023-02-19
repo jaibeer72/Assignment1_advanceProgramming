@@ -1,5 +1,6 @@
 #include "Stock.h"
 #include "Arr_Queue.h"
+#include "Arr_Stack.h"
 
 
 
@@ -25,9 +26,22 @@ int main() {
 	q->push(g);
 	q->push(h);
 
-	double res = q->calculateSP(j, 555); 
+	Stack* s = new Stack(); 
 
-	std::cout << res; 
+	s->push(a);
+	s->push(b);
+	s->push(j);
+	s->push(d);
+	s->push(e);
+	s->push(f);
+	s->push(g);
+	s->push(h);
+
+
+	double res = q->calculateSP(j, 555); 
+	double res2 = s->calculateSP(j, 555);
+
+	std::cout << res << std::endl << res2;
 
 	return 0; 
 }

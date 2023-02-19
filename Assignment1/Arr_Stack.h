@@ -1,7 +1,6 @@
 #pragma once
 #include "Stock.h"
 
-const int MAX_SIZE = 100;
 
 class Stack
 {
@@ -11,6 +10,7 @@ public:
     bool pop();
     Stock top();
     bool empty(); 
+    double calculateSP(Stock& s, int quantity); 
 
 private:
     Stock data_[MAX_SIZE];
