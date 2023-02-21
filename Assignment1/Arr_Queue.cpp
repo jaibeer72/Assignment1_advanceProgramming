@@ -4,7 +4,7 @@ Queue::Queue() : m_Front(0), m_Rear(-1)
 {
 }
 
-bool Queue::push(const Stock& s)
+bool Queue::push(Stock& s)
 {
     if (m_Rear == MAX_SIZE - 1) {
         return false; // queue is full

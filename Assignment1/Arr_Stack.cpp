@@ -5,7 +5,7 @@ Stack::Stack()
 {
 }
 
-bool Stack::push(const Stock& s)
+bool Stack::push(Stock& s)
 {
     if (m_Top == MAX_SIZE - 1) {
         return false; // stack overflow

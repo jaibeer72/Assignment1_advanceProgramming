@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup Label="ProjectConfigurations">
     <ProjectConfiguration Include="Debug|Win32">
@@ -129,12 +129,15 @@
   <ItemGroup>
     <ClCompile Include="Arr_Queue.cpp" />
     <ClCompile Include="Arr_Stack.cpp" />
+    <ClCompile Include="ListManager.cpp" />
     <ClCompile Include="Source.cpp" />
     <ClCompile Include="Stock.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Arr_Queue.h" />
     <ClInclude Include="Arr_Stack.h" />
+    <ClInclude Include="ListBase.h" />
+    <ClInclude Include="ListManager.h" />
     <ClInclude Include="Stock.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

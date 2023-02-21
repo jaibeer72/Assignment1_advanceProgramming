@@ -1,15 +1,15 @@
 #pragma once
-#include "Stock.h"
+#include "ListBase.h"
 
-class Queue
+class Queue : public ListBase
 {
 public:
     Queue();
-    bool push(const Stock& s);
-    bool pop();
+    bool push(Stock& s) override;
+    bool pop() override;
     Stock front(); 
-    bool empty(); 
-    double calculateSP(Stock& s, int quantity);
+    bool empty() override;
+    double calculateSP(Stock& s, int quantity) override;
 private:
     Stock data_[MAX_SIZE];
     int m_Front;

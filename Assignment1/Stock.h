@@ -5,15 +5,16 @@
 const int MAX_SIZE = 100;
 
 class Stock
-
 {
 public:
 	Stock(); 
 	Stock(std::string name , int quanity, double PPS);
 	~Stock();
 	std::string getName(); 
-	int getQuanity(); 
+	int getQuanity();
+	void setQuanity(int quantity); 
 	double getPPS(); 
+	bool operator==(const Stock& other); 
 
 private:
 	std::string m_Name; 

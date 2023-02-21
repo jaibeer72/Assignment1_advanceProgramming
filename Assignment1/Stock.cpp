@@ -23,7 +23,19 @@ int Stock::getQuanity()
 	return m_Quantity;
 }
 
+void Stock::setQuanity(int quantity)
+{
+	m_Quantity = quantity; 
+}
+
+
 double Stock::getPPS()
 {
 	return m_PPS;
+}
+
+// added a comparison so that set can check it properly
+bool Stock::operator==(const Stock& other)
+{
+	return m_Name == other.m_Name;
 }
