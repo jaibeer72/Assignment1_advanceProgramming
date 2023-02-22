@@ -3,7 +3,7 @@
 
 class ListBase
 {
-protected: 
+public: 
     virtual bool push(Stock& s) = 0;
     virtual bool pop() = 0;
     virtual bool empty() = 0;

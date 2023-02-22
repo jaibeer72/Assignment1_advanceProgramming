@@ -3,6 +3,7 @@
 #include "Arr_Stack.h"
 
 #include <unordered_set>
+#include <unordered_map>
 #include <memory>
 
 /// <summary>
@@ -24,11 +25,15 @@ public:
     bool push(Stock& s) override;
     bool pop() override;
     bool empty() override;
-    double calculateSP(Stock& s, int quantity) override;
+
+    std::unordered_map<std::string, double> getSP_For_AllLists(Stock& s, int quantity);
+    
 
 private:
+    // not using this cause it's not sessary
+    double calculateSP(Stock& s, int quantity) override;
     ListManager(); 
-    std::unordered_set<Stock> m_UniqueStocks;
-    std::unordered_set<std::unique_ptr<ListBase>> m_Lists;
+    //std::unordered_set<Stock> m_UniqueStocks;
+    std::unordered_map<std::string,std::unique_ptr<ListBase>> m_Lists;
 
 };

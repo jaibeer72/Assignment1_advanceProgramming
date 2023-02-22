@@ -2,8 +2,8 @@
 
 ListManager::ListManager()
 {
-    m_Lists.insert(std::make_unique<Queue>());
-    m_Lists.insert(std::make_unique<Stack>());
+    m_Lists.insert({ "Queue",std::make_unique<Queue>() });
+    m_Lists.insert({ "Stack", std::make_unique<Stack>()});
 }
 
 ListManager& ListManager::getInstance()
@@ -14,27 +14,61 @@ ListManager& ListManager::getInstance()
 
 bool ListManager::push(Stock& s)
 {
-    auto it = m_UniqueStocks.find(s); 
-    if (it != m_UniqueStocks.end())
-    {
-        int quant = const_cast<Stock&>(*it).getQuanity() + s.getQuanity();
-        const_cast<Stock&>(*it).setQuanity(quant); 
+    for (const auto& listPtr : m_Lists) {
+        if (!listPtr.second->push(s))
+        {
+            // throw error cause something failed
+            std::cout << "error doing push operation in " << listPtr.first;
+        }
     }
-    else
-    {
-        m_UniqueStocks.insert(s); 
-    }
-    return false;
+    // TODO : Make this later. 
+    //auto it = m_UniqueStocks.find(s); 
+    //if (it != m_UniqueStocks.end())
+    //{
+    //    int quant = const_cast<Stock&>(*it).getQuanity() + s.getQuanity();
+    //    const_cast<Stock&>(*it).setQuanity(quant); 
+    //}
+    //else
+    //{
+    //    m_UniqueStocks.insert(s); 
+    //}
+
+    return true;
 }
 
 bool ListManager::pop()
 {
-    return false;
+    for (const auto& listPtr : m_Lists) {
+        if (!listPtr.second->pop())
+        {
+            // throw error cause something failed
+            std::cout << "error doing pop operation in "<< listPtr.first;
+        }
+    }
+    return true;
 }
 
+// Might not be needed but keeping for now debug later
 bool ListManager::empty()
 {
-    return false;
+    for (const auto& listPtr : m_Lists) {
+        if (!listPtr.second->empty())
+        {
+            return false;
+        }
+    }
+    return true;
+}
+
+std::unordered_map<std::string, double> ListManager::getSP_For_AllLists(Stock& s, int quantity)
+{
+    std::unordered_map<std::string, double> result;
+
+    for (const auto& listPtr : m_Lists) {
+        result.insert({ listPtr.first , listPtr.second->calculateSP(s,quantity) });
+    }
+
+    return result;
 }
 
 double ListManager::calculateSP(Stock& s, int quantity)
