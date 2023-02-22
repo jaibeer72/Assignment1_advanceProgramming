@@ -24,5 +24,11 @@ int main() {
 		std::cout << res.first << " : " << res.second << std::endl; 
 	}
 
+	ListManager::getInstance().printList();
+	ListManager::getInstance().sell_Stock(*s, 653);
+	ListManager::getInstance().printList();
+
+
+
 	return 0; 
 }

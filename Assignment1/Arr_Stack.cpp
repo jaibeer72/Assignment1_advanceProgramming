@@ -47,7 +47,7 @@ double Stack::calculateSP(Stock& s, int quantity)
     int temp_Top = m_Top; 
     int quant = quantity; 
 
-    while (temp_Top > 0 && quant >= 0)
+    while (temp_Top >= 0 && quant >= 0)
     {
         if (data_[temp_Top].getName() == s.getName())
         {
@@ -69,4 +69,42 @@ double Stack::calculateSP(Stock& s, int quantity)
     }
 
     return result;
+}
+
+bool Stack::sell_Stock(Stock& s, int quantity)
+{
+    if (empty()) {
+        return false;
+    }
+    int i = m_Top;
+    while (i >= 0) {
+        if (data_[i].getName() == s.getName()) {
+            int nodeQuant = data_[i].getQuanity();
+            if (nodeQuant <= quantity) {
+                for (int j = i; j < m_Top; j++) {
+                    data_[j] = data_[j + 1];
+                }
+                m_Top--;
+                return true;
+            }
+            else {
+                // Update the node's quantity and return
+                data_[i].setQuanity(nodeQuant - quantity);
+                return true;
+            }
+        }
+        i--;
+    }
+    return false;
+}
+
+void Stack::printList()
+{
+    int temp_Top = m_Top;
+
+    while (temp_Top >= 0)
+    {
+        std::cout << " Name : " << data_[temp_Top].getName() << " Quantity " << data_[temp_Top].getQuanity() << " PPS : " << data_[temp_Top].getPPS() << std::endl;
+        temp_Top--;
+    }
 }

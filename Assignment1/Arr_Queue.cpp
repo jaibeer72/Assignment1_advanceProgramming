@@ -47,7 +47,7 @@ double Queue::calculateSP(Stock& s, int quantity)
     int temp_Rear = m_Rear;
     int quant = quantity;
 
-    while (temp_For < temp_Rear && quant >=0)
+    while (temp_For <= temp_Rear && quant >=0)
     {
         if (data_[temp_For].getName() == s.getName())
         {
@@ -70,5 +70,52 @@ double Queue::calculateSP(Stock& s, int quantity)
     }
 
     return result;
+}
+
+bool Queue::sell_Stock(Stock& s, int quantity)
+{
+    if (empty()) {
+        return false; // throw error here 
+    }
+
+    int removedQuantity = 0;
+
+    for (int i = m_Front; i <= m_Rear; i++) {
+        if (data_[i].getName() == s.getName()) {
+            int stockQuantity = data_[i].getQuanity();
+            if (stockQuantity > quantity - removedQuantity) {
+                // remove a portion of the stock
+                data_[i].setQuanity(stockQuantity - (quantity - removedQuantity));
+                removedQuantity = quantity;
+                break;
+            }
+            else {
+                // remove the entire stock
+                removedQuantity += stockQuantity;
+                for (int j = i; j < m_Rear; j++) {
+                    data_[j] = data_[j + 1];
+                }
+                m_Rear--;
+                i--; // check the element in this position again
+            }
+        }
+        if (removedQuantity == quantity) {
+            break;
+        }
+    }
+
+    return removedQuantity == quantity;
+}
+
+void Queue::printList()
+{
+    int temp_For = m_Front;
+    int temp_Rear = m_Rear;
+
+    while (temp_For <= temp_Rear)
+    {
+        std::cout << " Name : " << data_[temp_For].getName() << " Quantity " << data_[temp_For].getQuanity() << " PPS : " << data_[temp_For].getPPS() << std::endl;
+        temp_For++;
+    }
 }
 

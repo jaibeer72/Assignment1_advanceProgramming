@@ -25,6 +25,8 @@ public:
     bool push(Stock& s) override;
     bool pop() override;
     bool empty() override;
+    bool sell_Stock(Stock& s, int quanitity) override;
+    void printList() override;
 
     std::unordered_map<std::string, double> getSP_For_AllLists(Stock& s, int quantity);
     

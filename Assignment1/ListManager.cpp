@@ -6,6 +6,25 @@ ListManager::ListManager()
     m_Lists.insert({ "Stack", std::make_unique<Stack>()});
 }
 
+bool ListManager::sell_Stock(Stock& s, int quanitity)
+{
+    for (const auto& listPtr : m_Lists)
+    {
+        listPtr.second->sell_Stock(s , quanitity);
+    }
+
+    return true; 
+}
+
+void ListManager::printList()
+{
+    for (const auto& listPtr : m_Lists)
+    {
+        std::cout << listPtr.first << std::endl; 
+        listPtr.second->printList(); 
+    }
+}
+
 ListManager& ListManager::getInstance()
 {
     static ListManager instance;

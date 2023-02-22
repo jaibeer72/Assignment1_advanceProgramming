@@ -11,6 +11,8 @@ public:
     Stock top();
     bool empty() override;
     double calculateSP(Stock& s, int quantity)override;
+    bool sell_Stock(Stock& s, int quanitity) override;
+    void printList() override;
 
 private:
     Stock data_[MAX_SIZE];
