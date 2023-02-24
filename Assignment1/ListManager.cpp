@@ -22,6 +22,7 @@ void ListManager::printList()
     {
         std::cout << listPtr.first << std::endl; 
         listPtr.second->printList(); 
+        std::cout << std::endl; 
     }
 }
 
@@ -38,6 +39,7 @@ bool ListManager::push(Stock& s)
         {
             // throw error cause something failed
             std::cout << "error doing push operation in " << listPtr.first;
+            return false; 
         }
     }
     // TODO : Make this later. 

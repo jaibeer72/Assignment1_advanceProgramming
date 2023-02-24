@@ -8,6 +8,7 @@ Stack::Stack()
 bool Stack::push(Stock& s)
 {
     if (m_Top == MAX_SIZE - 1) {
+        std::cout << "Stack overflow"; 
         return false; // stack overflow
     }
     else {
@@ -20,6 +21,7 @@ bool Stack::push(Stock& s)
 bool Stack::pop()
 {
     if (empty()) {
+        std::cout << "Stack Overflow"; 
         return false; // stack underflow
     }
     else {
@@ -42,7 +44,7 @@ double Stack::calculateSP(Stock& s, int quantity)
 {
     double result = 0.0;
     if (empty())
-        std::cout << "underflow nothing there "; 
+        std::cout << "underflow nothing there in the stack"; 
 
     int temp_Top = m_Top; 
     int quant = quantity; 
@@ -64,7 +66,7 @@ double Stack::calculateSP(Stock& s, int quantity)
 
     if (result == 0.0) // probably stock not found 
     {
-        std::cout << "mostly stock not found error";
+        std::cout << "Probably you don't have the stock you're trying to sell";
         // throw error if my UI is not straight forward 
     }
 
@@ -74,6 +76,7 @@ double Stack::calculateSP(Stock& s, int quantity)
 bool Stack::sell_Stock(Stock& s, int quantity)
 {
     if (empty()) {
+        std::cout << "Stack underflow : Empty stack"; 
         return false;
     }
     int i = m_Top;
@@ -84,6 +87,7 @@ bool Stack::sell_Stock(Stock& s, int quantity)
                 for (int j = i; j < m_Top; j++) {
                     data_[j] = data_[j + 1];
                 }
+                //quantity -= nodeQuant; // redusing the quanity just to make sure 
                 m_Top--;
                 return true;
             }
@@ -95,6 +99,7 @@ bool Stack::sell_Stock(Stock& s, int quantity)
         }
         i--;
     }
+    std::cout << "Trying to sell more quaity than you have";
     return false;
 }
 
@@ -104,7 +109,7 @@ void Stack::printList()
 
     while (temp_Top >= 0)
     {
-        std::cout << " Name : " << data_[temp_Top].getName() << " Quantity " << data_[temp_Top].getQuanity() << " PPS : " << data_[temp_Top].getPPS() << std::endl;
+        std::cout << " \n [ Name ] : " << data_[temp_Top].getName() << "  [ Quantity ] : " << data_[temp_Top].getQuanity() << "  [ PPS ] : " << data_[temp_Top].getPPS() << std::endl;
         temp_Top--;
     }
 }

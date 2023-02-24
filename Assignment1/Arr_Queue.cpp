@@ -114,7 +114,7 @@ void Queue::printList()
 
     while (temp_For <= temp_Rear)
     {
-        std::cout << " Name : " << data_[temp_For].getName() << " Quantity " << data_[temp_For].getQuanity() << " PPS : " << data_[temp_For].getPPS() << std::endl;
+        std::cout << "\n [ Name ] : " << data_[temp_For].getName() << "  [ Quantity ] : " << data_[temp_For].getQuanity() << "  [ PPS ] : " << data_[temp_For].getPPS() << std::endl;
         temp_For++;
     }
 }
