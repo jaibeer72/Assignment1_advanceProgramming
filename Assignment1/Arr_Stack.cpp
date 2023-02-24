@@ -21,7 +21,7 @@ bool Stack::push(Stock& s)
 bool Stack::pop()
 {
     if (empty()) {
-        std::cout << "Stack Overflow"; 
+        std::cout << "Stack underflow"; 
         return false; // stack underflow
     }
     else {
@@ -62,12 +62,19 @@ double Stack::calculateSP(Stock& s, int quantity)
         }
         temp_Top--; 
     }
+
     result = result / quantity;
 
     if (result == 0.0) // probably stock not found 
     {
-        std::cout << "Probably you don't have the stock you're trying to sell";
+        std::cout << "\n ****[ Stock NOT Found Error in Stack ]****";
+        return 0.0; 
         // throw error if my UI is not straight forward 
+    }
+
+    if (quant > 0)
+    {
+        std::cout << "\n ****[ Trying to sell more stock than you have: On confirm this will sell all your inventory for this stock] ********";
     }
 
     return result;

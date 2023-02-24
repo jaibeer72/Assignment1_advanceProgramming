@@ -65,8 +65,14 @@ double Queue::calculateSP(Stock& s, int quantity)
 
     if (result == 0.0) // probably stock not found 
     {
-        std::cout << "mostly stock not found error"; 
+        std::cout << "\n ****[ Stock NOT Found Error in queue ]****";
+        return result;
         // throw error if my UI is not straight forward 
+    }
+
+    if (quant > 0)
+    {
+        std::cout << "\n ****[ Trying to sell more stock than you have: On confirm this will sell all your inventory for this stock] ********";
     }
 
     return result;
