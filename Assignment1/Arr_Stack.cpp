@@ -80,21 +80,20 @@ bool Stack::sell_Stock(Stock& s, int quantity)
         return false;
     }
     int i = m_Top;
-    while (i >= 0) {
+    while (i >= 0 && quantity > 0) {
         if (data_[i].getName() == s.getName()) {
             int nodeQuant = data_[i].getQuanity();
             if (nodeQuant <= quantity) {
                 for (int j = i; j < m_Top; j++) {
                     data_[j] = data_[j + 1];
                 }
-                //quantity -= nodeQuant; // redusing the quanity just to make sure 
+                quantity -= nodeQuant; // redusing the quanity just to make sure 
                 m_Top--;
-                return true;
             }
             else {
                 // Update the node's quantity and return
                 data_[i].setQuanity(nodeQuant - quantity);
-                return true;
+                quantity = 0; 
             }
         }
         i--;

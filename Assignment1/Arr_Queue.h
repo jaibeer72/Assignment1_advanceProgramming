@@ -1,6 +1,8 @@
 #pragma once
 #include "ListBase.h"
 
+// based on lab exmaples 
+
 class Queue : public ListBase
 {
 public:

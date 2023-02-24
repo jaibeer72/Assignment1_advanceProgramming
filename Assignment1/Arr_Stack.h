@@ -2,6 +2,8 @@
 #include "ListBase.h"
 
 
+// based on lab examples 
+
 class Stack : public ListBase
 {
 public:
